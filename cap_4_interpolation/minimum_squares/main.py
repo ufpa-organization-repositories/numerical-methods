@@ -12,3 +12,4 @@ print(a,b)
 
 fx = calc_line_equation_by_min_squares_method(coefs=[a,b])
 print(fx)
+
