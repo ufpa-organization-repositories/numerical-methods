@@ -22,20 +22,10 @@ STEP 09: Plot f(x) together with table points
 
 init_printing(use_unicode=True)
 x = Symbol('x')
-table = get_table(file_name='table.csv')
 
-"""
-way 1: given the table and the x point, returning the function value in the x point
-"""
-x_point = 0.02
-fx = calc_finite_differences(table, x_point)
-print('fx: ', fx)
+# table = get_table(file_name='table.csv')
 
-print('\n############################################\n')
+fx = calc_divided_differences(get_table(file_name='table.csv'))
 
-"""
-way 2: given the table only, returning the interpolation function to calculate in wherever x point you want
-"""
-fx = calc_finite_differences(table)
-print('interpolation function: ', fx)
-print('fx: ', fx.subs(x, x_point))
+print(fx)
+print(fx.subs(x, 0.4))
