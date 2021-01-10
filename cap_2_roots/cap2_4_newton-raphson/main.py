@@ -134,7 +134,7 @@ plt.legend(loc='best', fancybox=True, framealpha=0.5)
 
 
 
-plt.savefig(fname='ROOTs.png', dpi=100)
+plt.savefig(fname='ROOTs.png', dpi=140)
 # ---------------------
 plt.close()
 
@@ -164,4 +164,4 @@ plt.legend(loc='best')
 
 # plt.ylabel("Roots")
 plt.legend(bbox_to_anchor=(1, 1), loc='best', fancybox=True, framealpha=0.5)
-plt.savefig(fname='function.png', dpi=100)
+plt.savefig(fname='function.png', dpi=140)
