@@ -16,14 +16,26 @@ HTTP Status
 
 # modules
 import os
-from modules.chapter import Chapter
-from modules.method import Method
+from modules.chapter import Chapter             # Chapter operations
 from typing import List
 
 # constants
 CHAPTER: str = None                 # Chapter folder
 CHAPTER_METHODS: List[str] = []     # Method folder of the chapter
 METHOD: str = None                  # Method folder
+METHOD_PATH: str = None             # Method path to the executable python file
+SERVER_PATH: str = os.getcwd()      # Server Path
+
+# global modules
+
+# https://stackoverflow.com/questions/301134/how-to-import-a-module-given-its-name-as-string
+import importlib
+spec = importlib.util.spec_from_file_location("method", os.path.join(SERVER_PATH, "modules", "interfaces", "method.py"))
+method_interface_module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(method_interface_module)
+
+IMethod = method_interface_module.IMethod
+setattr(__builtins__, 'IMethod', IMethod)
 
 # Routes
 @app.route('/', methods=['GET', 'POST'])
@@ -51,13 +63,42 @@ def chapter():
     return render_template('chapter/index.html')
 
 @app.route('/method', methods=['GET', 'POST'])
-def method():
-    global Method
+def method():    
     global METHOD
+    global METHOD_PATH    
+    global SERVER_PATH
+
+    def load_module(module_name: str, path: str):
+        # https://www.dev2qa.com/how-to-import-a-python-module-from-a-python-file-full-path/
+
+        spec = importlib.util.spec_from_file_location(\
+            module_name.replace(".py", ""), os.path.join(path, module_name))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        return module
 
     METHOD = request.form["method"]
-    print('method: ', METHOD)
-    Method.execute(chapter_folder=CHAPTER, method_folder=METHOD)
+    METHOD_PATH = os.path.join(os.sep.join(SERVER_PATH.split(os.sep)[:-1]), "methods", CHAPTER, METHOD)
+    print(f'method path: {METHOD_PATH}')
+
+    os.chdir(METHOD_PATH)                                                                # change to method path
+
+    # load functions
+    # set them builtin
+    method_funcions_modules = load_module(module_name="modules.py", path=METHOD_PATH)
+    for key in method_funcions_modules.__dict__:
+        if not "__" in key:
+            setattr(__builtins__, key, method_funcions_modules.__dict__[key])
+
+    # load method
+    method_module = load_module(module_name="main.py", path=METHOD_PATH)
+    Method = method_module.Method                                                             # instantiate Method
+    method = Method()                                                                  # create Method instance
+    method.execute()                                                                   # execute Method
+    
+    os.chdir(SERVER_PATH)                                                                # change to server path
+
     return render_template('method/index.html')
 
 
@@ -77,17 +118,18 @@ class LogItem(Resource):
     """
 
     def get(self):
-        global CHAPTER
-        global METHOD
-        home_path: str = os.getcwd()        
-        method_path: str = os.path.join(os.sep.join(os.getcwd().split(os.sep)[:-1]), "methods", CHAPTER, METHOD)        
-        os.chdir(method_path)
+        global METHOD_PATH
+        global SERVER_PATH
 
-        log_path: str = os.path.join(method_path, 'log.txt')
+        os.chdir(METHOD_PATH)
+
+        log_path: str = os.path.join(METHOD_PATH, 'log.txt')
+
         log = None
         with open(log_path, 'r') as f:
             log = f.readlines()
-        os.chdir(home_path)
+
+        os.chdir(SERVER_PATH)
         return {'log': log}, 200
         
 api.add_resource(MethodList, '/methods')

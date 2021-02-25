@@ -1,44 +1,26 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
-from modules import *
+# from modules import *
 
 from abc import ABC, abstractmethod
 from typing import List, Dict
 
+# global IMethod
+# import IMethod
+
 ERROR_THRESHOLD = 0.01
 N_MAX_ITERATIONS = 10
 
-class IMethod(ABC):
-	def execute(self):
-		self.parameters: Dict = {}
-		self.log: Dict = {'log': []}
-		self.hook_show_information_method()
-		self.get_parameters()
-		self.run()
-		self.export_graph()
-		self.export_log()		
-	
-	def hook_show_information_method(self): pass
 
-	@abstractmethod
-	def get_parameters(self): pass
-
-	@abstractmethod
-	def run(self): pass
-
-	@abstractmethod
-	def run(self): pass
-
-
-class Bissection(IMethod):
+class Method(IMethod):
 
 	def get_parameters(self) -> None:
 		# Entry of values		
 		self.parameters['a'] = calc_truncate(number=0)
 		self.parameters['b'] = calc_truncate(number=1)
 
-	def run(self):
+	def run(self):      
 
 		# Parameters
 		a, b = self.parameters['a'], self.parameters['b']
@@ -230,10 +212,8 @@ class Bissection(IMethod):
 		with open('log.txt', 'w') as f:
 			for line in self.log['log']:
 				f.write(line + '\n')
-		# return self.log['log']
+		# return self.log['log']	
 
-method = Bissection()
-method.execute()
 	
 # # Entry of values
 # a = calc_truncate(number=0)
