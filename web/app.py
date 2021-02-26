@@ -17,14 +17,18 @@ HTTP Status
 # modules
 import os
 from modules.chapter import Chapter             # Chapter operations
-from typing import List
+from typing import List, Dict
 
 # constants
 CHAPTER: str = None                 # Chapter folder
 CHAPTER_METHODS: List[str] = []     # Method folder of the chapter
 METHOD: str = None                  # Method folder
 METHOD_PATH: str = None             # Method path to the executable python file
+METHOD_PARAMS: Dict = None          # Method parameters
 SERVER_PATH: str = os.getcwd()      # Server Path
+
+# objects
+method: object = None
 
 # global modules
 
@@ -42,7 +46,7 @@ setattr(__builtins__, 'IMethod', IMethod)
 def homepage():
     """Route to render the homepage
     """
-    return render_template('homepage/index.html')
+    return render_template('homepage.html')
 
 @app.route('/chapter', methods=['GET', 'POST'])
 def chapter():
@@ -60,13 +64,16 @@ def chapter():
     CHAPTER_METHODS = Chapter.get_chapter_methods(CHAPTER)
     print('chapter methods:\n',CHAPTER_METHODS)
 
-    return render_template('chapter/index.html')
+    return render_template('chapter.html')
 
-@app.route('/method', methods=['GET', 'POST'])
-def method():    
+@app.route('/parametrization', methods=['GET', 'POST'])
+def parametrization():
+    global CHAPTER    
     global METHOD
-    global METHOD_PATH    
+    global METHOD_PATH
+    global METHOD_PARAMS
     global SERVER_PATH
+    global method
 
     def load_module(module_name: str, path: str):
         # https://www.dev2qa.com/how-to-import-a-python-module-from-a-python-file-full-path/
@@ -79,10 +86,7 @@ def method():
         return module
 
     METHOD = request.form["method"]
-    METHOD_PATH = os.path.join(os.sep.join(SERVER_PATH.split(os.sep)[:-1]), "methods", CHAPTER, METHOD)
-    print(f'method path: {METHOD_PATH}')
-
-    os.chdir(METHOD_PATH)                                                                # change to method path
+    METHOD_PATH = os.path.join(os.sep.join(SERVER_PATH.split(os.sep)[:-1]), "methods", CHAPTER, METHOD)    
 
     # load functions
     # set them builtin
@@ -90,17 +94,29 @@ def method():
     for key in method_funcions_modules.__dict__:
         if not "__" in key:
             setattr(__builtins__, key, method_funcions_modules.__dict__[key])
-
-    # load method
-    method_module = load_module(module_name="main.py", path=METHOD_PATH)
-    Method = method_module.Method                                                             # instantiate Method
-    method = Method()                                                                  # create Method instance
-    method.execute()                                                                   # execute Method
     
-    os.chdir(SERVER_PATH)                                                                # change to server path
+    # load method module
+    method_module = load_module(module_name="main.py", path=METHOD_PATH)
+    # load Method class from method module
+    Method = method_module.Method
+    # instantiate GLOBAL Method object
+    method = Method()
+    # get default method parameters
+    METHOD_PARAMS = method.parameters    
+    
+    return render_template('parametrization.html')
 
-    return render_template('method/index.html')
+@app.route('/method', methods=["GET", "POST"])
+def method():
+    global METHOD_PARAMS
+    global method    
 
+    # change to MMETHOD_PATH to export log in method folder
+    os.chdir(METHOD_PATH)
+    method.execute(request.form)    
+    os.chdir(SERVER_PATH)
+
+    return render_template('method.html')
 
 # Apis
 class MethodList(Resource):    
@@ -114,7 +130,7 @@ class MethodList(Resource):
 
 class LogItem(Resource):
     """
-    RESTful API for get the log og the executed model
+    RESTful API for get the log of the executed model
     """
 
     def get(self):
@@ -131,9 +147,18 @@ class LogItem(Resource):
 
         os.chdir(SERVER_PATH)
         return {'log': log}, 200
-        
+
+class ParamsMethodItem(Resource):
+    """
+    RESTful API for get the parameters of the model which will be executed
+    """
+
+    def get(self):
+        return METHOD_PARAMS, 200
+
 api.add_resource(MethodList, '/methods')
 api.add_resource(LogItem, '/log')
+api.add_resource(ParamsMethodItem, '/parameters')
 
 # Start server
 if __name__ == '__main__':

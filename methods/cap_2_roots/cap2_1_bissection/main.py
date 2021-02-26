@@ -15,15 +15,14 @@ N_MAX_ITERATIONS = 10
 
 class Method(IMethod):
 
-	def get_parameters(self) -> None:
-		# Entry of values		
-		self.parameters['a'] = calc_truncate(number=0)
-		self.parameters['b'] = calc_truncate(number=1)
+	def __init__(self):
+		super().__init__(params=['a', 'b'])
 
-	def run(self):      
+	def run(self):
 
 		# Parameters
 		a, b = self.parameters['a'], self.parameters['b']
+		print('a and b: ', a, b)
 
 		# Output: Receives the ROOT retrivied for the program
 		ROOT = None
@@ -41,8 +40,7 @@ class Method(IMethod):
 
 		while not STOP_CONDITION:
 			i = i + 1
-			self.log['log'].append(f'\n________________________\nITERATION: {i}')
-			print('\n________________________\nITERATION: ', i)
+			self.log['log'].append(f'\n________________________\nITERATION: {i}')			
 			iteration_array = np.append(iteration_array, [i])
 
 			# STEP 1: Test the Theorem of Bolzano
@@ -54,16 +52,12 @@ class Method(IMethod):
 				self.log['log'].append(f'a: {a}\tf(a): {calc_function(a)}')
 				self.log['log'].append(f'b: {b}\tf(b): {calc_function(b)}')
 				self.log['log'].append('BOLZANO: OK')
-				print(f'a: {a}\tf(a): {calc_function(a)}')
-				print(f'b: {b}\tf(b): {calc_function(b)}')		
-				print('BOLZANO: OK')
 
 				# STEP 2: Calculate break point
 				# input("STEP 2: press t continue ...")
 
 				break_point = calc_break_point(a=a, b=b)
 				self.log['log'].append(f'break_point: {break_point}')
-				print('break_point: ', break_point)
 				
 				# STEP 3: Reduce previous [a,b] interval
 				# Choose between [a, x] or [x, b] by testing Theorem of Bolzano
@@ -90,15 +84,7 @@ class Method(IMethod):
 					self.log['log'].append(f'INTERVAL: [{a},{b}]')
 					self.log['log'].append(f'ROOT (breakpoint): {break_point}')
 					self.log['log'].append(f'ERROR: {error}')
-					self.log['log'].append('. . . . . .')
-
-					print('\nSUMMARY')
-					print('. . . . . .')
-					print(f'ITERATION: {i}')
-					print(f'INTERVAL: [{a},{b}]')
-					print(f'ROOT (breakpoint): {break_point}')
-					print(f'ERROR: {error}')
-					print('. . . . . .')			
+					self.log['log'].append('. . . . . .')			
 
 					if (error < ERROR_THRESHOLD) or (i == N_MAX_ITERATIONS):
 						
@@ -107,17 +93,12 @@ class Method(IMethod):
 						self.log['log'].append('OR')
 						self.log['log'].append(f'N_MAX_ITERATIONS={N_MAX_ITERATIONS} REACHED == {i == N_MAX_ITERATIONS}')						
 
-						print('\nStop the program')
-						print(f'< ERROR_THRESHOLD={ERROR_THRESHOLD} REACHED == {error < ERROR_THRESHOLD}')
-						print('OR')
-						print(f'N_MAX_ITERATIONS={N_MAX_ITERATIONS} REACHED == {i == N_MAX_ITERATIONS}')
 						ROOT = calc_truncate((a + b)/2)
 						ERROR = error
 						STOP_CONDITION = True		
 						break
 					else:
 						self.log['log'].append('\nContinue the program')
-						print('\nContinue the program')
 
 				if calc_Bolzano_Theorem(a, break_point):
 					a,b = a,break_point
@@ -126,13 +107,10 @@ class Method(IMethod):
 					a,b = break_point,b
 					# print(break_point, b)
 				self.log['log'].append(f'NEW INTERVAL:\n[a={a}, b={b}]')
-				print(f'NEW INTERVAL:\n[a={a}, b={b}]')
 
 			else:
 				self.log['log'].append(f'There is no ROOT in [a,b]=[{a},{b}]')
 				self.log['log'].append('>>> CHOOSE ANOTHER [a,b] INTERVAL <<<')
-				print('There is no ROOT in [a,b]=[{},{}]',format(str(a), str(b)))
-				print('>>> CHOOSE ANOTHER [a,b] INTERVAL <<<')
 				break
 
 		self.log['log'].append('\n\n\n >>> RESULT <<<')
@@ -140,13 +118,6 @@ class Method(IMethod):
 		self.log['log'].append('INTERVAL: [{},{}]'.format(a, b))
 		self.log['log'].append(f'ROOT: {ROOT}')
 		self.log['log'].append(f'ERROR: {ERROR}')
-
-		print('\n\n\n >>> RESULT <<<')
-
-		print('ITERATION: ', i)
-		print('INTERVAL: [{},{}]'.format(a, b))
-		print('ROOT: ', ROOT)
-		print('ERROR: ', ERROR)
 
 		# print(x_array)
 		# print(y_array)
