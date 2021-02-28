@@ -1,0 +1,1 @@
+window.method = new Method();
