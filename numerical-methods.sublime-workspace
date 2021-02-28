@@ -1,0 +1,679 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"br",
+				"branches"
+			],
+			[
+				"image",
+				"image_pillow_client"
+			],
+			[
+				"im",
+				"image_pillow"
+			],
+			[
+				"ima",
+				"image_64_encode"
+			],
+			[
+				"iM",
+				"Image"
+			],
+			[
+				"cla",
+				"classmethod"
+			],
+			[
+				"encode",
+				"encode_photo"
+			],
+			[
+				"di_",
+				"di_profiles_of_a_course"
+			],
+			[
+				"db_li",
+				"db_li_profiles_of_a_course"
+			],
+			[
+				"Pyro",
+				"Pyro4\tmodule"
+			],
+			[
+				"start",
+				"startServer\tfunction"
+			],
+			[
+				"email",
+				"email_informations\tstatement"
+			],
+			[
+				"li",
+				"li_profiles=\tparam"
+			],
+			[
+				"for",
+				"format\tfunction"
+			],
+			[
+				"get",
+				"get_all_informations_of_all_profiles"
+			],
+			[
+				"di_all",
+				"di_all_profiles\tstatement"
+			],
+			[
+				"di",
+				"di_all_informations\tstatement"
+			],
+			[
+				"l",
+				"li_profiles=\tparam"
+			],
+			[
+				"skills",
+				"skills_ananindeua\tstatement"
+			],
+			[
+				"profi",
+				"profiles_engcomp\tstatement"
+			],
+			[
+				"lli",
+				"li_skills_of_profiles_of_a_address"
+			],
+			[
+				"ski",
+				"skills"
+			],
+			[
+				"pyro",
+				"Pyro4\tmodule"
+			],
+			[
+				"first",
+				"first_name"
+			],
+			[
+				"s",
+				"setter"
+			],
+			[
+				"__",
+				"__dict__\tstatement"
+			],
+			[
+				"ge",
+				"get_profiles_of_a_course\tfunction"
+			],
+			[
+				"sour",
+				"source_process\tstatement"
+			],
+			[
+				"com",
+				"comm"
+			],
+			[
+				"pip",
+				"pipe_1"
+			],
+			[
+				"print",
+				"printed"
+			],
+			[
+				"proce",
+				"process_with_default_name"
+			],
+			[
+				"rand",
+				"randint"
+			],
+			[
+				"consum",
+				"consumer"
+			],
+			[
+				"w",
+				"wait"
+			],
+			[
+				"prod",
+				"producer"
+			],
+			[
+				"to",
+				"total_items"
+			],
+			[
+				"is",
+				"is_alive"
+			],
+			[
+				"exe",
+				"execute"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/home/bruno/Documents/dev/st3/st3.sh",
+			"settings":
+			{
+				"buffer_size": 132,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Anaconda Python Builder",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				],
+				[
+					"Packages/User/venv-p1-sist-dist.sublime-build",
+					""
+				],
+				[
+					"Packages/User/venv-software-fundamentals.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/venv-p1-sist-dist.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"r",
+				"Terminus: Rename Title"
+			],
+			[
+				"ren",
+				"Terminus: Rename Title"
+			],
+			[
+				"renam",
+				"Terminus: Rename Title"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"ip",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"err",
+				"Anaconda: Show error list"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"erro",
+				"Anaconda: Show error list"
+			],
+			[
+				"rename",
+				"Terminus: Rename Title"
+			],
+			[
+				"termi",
+				"Terminus: Rename Title"
+			],
+			[
+				"error",
+				"Anaconda: Show error list"
+			],
+			[
+				"previ",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"menu",
+				"View: Toggle Menu"
+			],
+			[
+				"sidebar",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"terminus",
+				"Preferences: Terminus Command Palette"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 171.0,
+		"history":
+		[
+			"8",
+			"python",
+			"dir"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": false,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/bruno/Documents/dev/software-fundamentals/git.sh",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_1_bissection/main.py",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_1_bissection/function.png",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_1_bissection/ROOTs.png",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_1_bissection/modules.py",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_2_false-position/main.py",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_2_false-position/function.png",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_2_false-position/ROOTs.png",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_2_false-position/modules.py",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_3_linear-iteration/main.py",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_3_linear-iteration/modules.py",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_3_linear-iteration/function.png",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_3_linear-iteration/ROOTs.png",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_3_linear-iteration/*.p",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_4_newton-raphson/main.py",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_4_newton-raphson/function.png",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_4_newton-raphson/ROOTs.png",
+		"/home/bruno/Documents/dev/numerical-methods/cap_2_roots/cap2_4_newton-raphson/modules.py",
+		"/home/bruno/Documents/dev/numerical-methods/requirements.txt",
+		"/home/bruno/Documents/dev/p1_sist_dist/p1-sist-dist.sublime-project",
+		"/home/bruno/.config/sublime-text-3/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
+		"/home/bruno/Documents/dev/p1_sist_dist/test.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section5/Pyro4/First Example/server.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section5/Pyro4/First Example/client.py",
+		"/home/bruno/.config/sublime-text-3/Packages/User/venv-p1-sist-dist.sublime-build",
+		"/home/bruno/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/home/bruno/Documents/dev/p1_sist_dist/homework_01/app_client.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/homework_01/app_server.py",
+		"/home/bruno/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+		"/home/bruno/Documents/dev/p1_sist_dist/homework_01/modules/profiles.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/modules/profile.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/app_client.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/app_server.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/modules/db_operations.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/private_attrs_with_property.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/test_app_server.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/test_app_client.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/modules_client/test_profiles.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/modules_client/profile.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/modules_server/db_operations.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/README.md",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/helloworldwithMPI.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/gather.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/scatter.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/broadcast.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/pointToPointCommunication.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/deadLockProblems.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/alltoall.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/virtualTopology.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/using_queue.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/processes_barrier.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/using_pipes.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/target_function.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/synchronize_with_manager.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/subclass_process.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/spawn_a_process.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/spawn1.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/reduction.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/process_pool.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/process_barrier.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/naming_a_process.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/kill_a_process.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section3/background_process.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section2/evaluating_performances.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section2/Q.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section2/Q",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section2/using_with_statement.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section2/event.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section1/calling_Process.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section1/called_Process.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section1/called_Process_2.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section1/hello_Python_WithThreads.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section2/Thread_in_a_subclass.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section2/semaphores.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section2/rlock_management.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section2/lock_management.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section2/determine_the_current_thread.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section2/definining_a_thread.py",
+		"/home/bruno/Documents/dev/p1_sist_dist/course_parallel_computer/Section_1_Python_Parallel_Programming_Solutions/Section2/condition.py",
+		"/home/bruno/Documents/natal_solidario/total_geral.csv",
+		"/home/bruno/Documents/natal_solidario/total.csv",
+		"/home/bruno/Documents/natal_solidario/total",
+		"/home/bruno/Documents/natal_solidario/doacoes_cestas.csv",
+		"/home/bruno/Documents/natal_solidario/lanche.csv",
+		"/home/bruno/Documents/natal_solidario/gastos.csv",
+		"/home/bruno/Documents/install_packages.sh",
+		"/home/bruno/Documents/dev/p1_sist_dist_2/sist_dist_p1/app_client.py",
+		"/home/bruno/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/bruno/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/bruno/.config/sublime-text-3/Packages/User/Terminus.sublime-settings",
+		"/home/bruno/.config/sublime-text-3/Packages/Terminus/Terminus.sublime-settings",
+		"/home/bruno/.config/sublime-text-3/Packages/Terminus/Default.sublime-keymap"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 223.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"dpi",
+			"pdi",
+			"dpi=",
+			"dpi",
+			"git add"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/home/bruno/Documents/dev/st3/st3.sh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 132,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								63,
+								63
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 0,
+								"count": 11,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"rainbow_checked": true,
+							"rainbowth.lispy": false,
+							"syntax": "Packages/ShellScript/Bash.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 38.0
+	},
+	"input":
+	{
+		"height": 77.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.Terminus":
+	{
+		"height": 249.0
+	},
+	"output.Terminus 2":
+	{
+		"height": 145.0
+	},
+	"output.diagnostics":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 129.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/venv-p1-sist-dist.sublime-build",
+	"project": "numerical-methods.sublime-project",
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "num",
+		"selected_items":
+		[
+			[
+				"num",
+				"~/Documents/dev/numerical-methods/numerical-methods.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "Prof",
+		"selected_items":
+		[
+			[
+				"Prof",
+				"Profile"
+			]
+		],
+		"width": 592.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 233.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+		"max_columns": 3
+	}
+}

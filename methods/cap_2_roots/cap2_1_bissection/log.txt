@@ -2,11 +2,11 @@ PARAMETERS
 
 >>> a: 0.0
 
->>> b: 2.0
+>>> b: 5.0
 
 >>> ERROR_THRESHOLD: 0.01
 
->>> N_MAX_ITERATIONS: 10.0
+>>> N_MAX_ITERATIONS: 100.0
 
 >>> N_FLOATING_POINTS: 4.0
 
@@ -15,207 +15,228 @@ ________________________
 ITERATION: 0
 # STEP 1: Test the Theorem of Bolzano
 a: 0.0	f(a): 1.0
-b: 2.0	f(b): -1.8646
+b: 5.0	f(b): -4.9932
 BOLZANO: OK
 # STEP 2: Calculate break point
-break_point: 1.0
+break_point: 2.5
 NEW INTERVAL:
-[a=0.0, b=1.0]
+[a=0.0, b=2.5]
 
 ________________________
 ITERATION: 1
 # STEP 1: Test the Theorem of Bolzano
 a: 0.0	f(a): 1.0
-b: 1.0	f(b): -0.6321
+b: 2.5	f(b): -2.4179
 BOLZANO: OK
 # STEP 2: Calculate break point
-break_point: 0.5
+break_point: 1.25
 
 SUMMARY
 . . . . . .
 ITERATION: 1
-INTERVAL: [0.0,1.0]
-ROOT (breakpoint): 0.5
-ERROR: 1.632
+INTERVAL: [0.0,2.5]
+ROOT (breakpoint): 1.25
+ERROR: 3.4179
 . . . . . .
 
 Continue the program
 NEW INTERVAL:
-[a=0.5, b=1.0]
+[a=0.0, b=1.25]
 
 ________________________
 ITERATION: 2
 # STEP 1: Test the Theorem of Bolzano
-a: 0.5	f(a): 0.1065
-b: 1.0	f(b): -0.6321
-BOLZANO: OK
-# STEP 2: Calculate break point
-break_point: 0.75
-
-SUMMARY
-. . . . . .
-ITERATION: 2
-INTERVAL: [0.5,1.0]
-ROOT (breakpoint): 0.75
-ERROR: 0.7386
-. . . . . .
-
-Continue the program
-NEW INTERVAL:
-[a=0.5, b=0.75]
-
-________________________
-ITERATION: 3
-# STEP 1: Test the Theorem of Bolzano
-a: 0.5	f(a): 0.1065
-b: 0.75	f(b): -0.2776
+a: 0.0	f(a): 1.0
+b: 1.25	f(b): -0.9634
 BOLZANO: OK
 # STEP 2: Calculate break point
 break_point: 0.625
 
 SUMMARY
 . . . . . .
-ITERATION: 3
-INTERVAL: [0.5,0.75]
+ITERATION: 2
+INTERVAL: [0.0,1.25]
 ROOT (breakpoint): 0.625
-ERROR: 0.3841
+ERROR: 1.9634
 . . . . . .
 
 Continue the program
 NEW INTERVAL:
-[a=0.5, b=0.625]
+[a=0.0, b=0.625]
+
+________________________
+ITERATION: 3
+# STEP 1: Test the Theorem of Bolzano
+a: 0.0	f(a): 1.0
+b: 0.625	f(b): -0.0897
+BOLZANO: OK
+# STEP 2: Calculate break point
+break_point: 0.3125
+
+SUMMARY
+. . . . . .
+ITERATION: 3
+INTERVAL: [0.0,0.625]
+ROOT (breakpoint): 0.3125
+ERROR: 1.0897
+. . . . . .
+
+Continue the program
+NEW INTERVAL:
+[a=0.3125, b=0.625]
 
 ________________________
 ITERATION: 4
 # STEP 1: Test the Theorem of Bolzano
-a: 0.5	f(a): 0.1065
+a: 0.3125	f(a): 0.4191
 b: 0.625	f(b): -0.0897
 BOLZANO: OK
 # STEP 2: Calculate break point
-break_point: 0.5625
+break_point: 0.4687
 
 SUMMARY
 . . . . . .
 ITERATION: 4
-INTERVAL: [0.5,0.625]
-ROOT (breakpoint): 0.5625
-ERROR: 0.1961
+INTERVAL: [0.3125,0.625]
+ROOT (breakpoint): 0.4687
+ERROR: 0.5087
 . . . . . .
 
 Continue the program
 NEW INTERVAL:
-[a=0.5625, b=0.625]
+[a=0.4687, b=0.625]
 
 ________________________
 ITERATION: 5
 # STEP 1: Test the Theorem of Bolzano
-a: 0.5625	f(a): 0.0072
+a: 0.4687	f(a): 0.1571
 b: 0.625	f(b): -0.0897
 BOLZANO: OK
 # STEP 2: Calculate break point
-break_point: 0.5937
+break_point: 0.5468
 
 SUMMARY
 . . . . . .
 ITERATION: 5
-INTERVAL: [0.5625,0.625]
-ROOT (breakpoint): 0.5937
-ERROR: 0.0969
+INTERVAL: [0.4687,0.625]
+ROOT (breakpoint): 0.5468
+ERROR: 0.2468
 . . . . . .
 
 Continue the program
 NEW INTERVAL:
-[a=0.5625, b=0.5937]
+[a=0.5468, b=0.625]
 
 ________________________
 ITERATION: 6
 # STEP 1: Test the Theorem of Bolzano
-a: 0.5625	f(a): 0.0072
-b: 0.5937	f(b): -0.0414
+a: 0.5468	f(a): 0.0319
+b: 0.625	f(b): -0.0897
 BOLZANO: OK
 # STEP 2: Calculate break point
-break_point: 0.5781
+break_point: 0.5859
 
 SUMMARY
 . . . . . .
 ITERATION: 6
-INTERVAL: [0.5625,0.5937]
-ROOT (breakpoint): 0.5781
-ERROR: 0.0486
+INTERVAL: [0.5468,0.625]
+ROOT (breakpoint): 0.5859
+ERROR: 0.1216
 . . . . . .
 
 Continue the program
 NEW INTERVAL:
-[a=0.5625, b=0.5781]
+[a=0.5468, b=0.5859]
 
 ________________________
 ITERATION: 7
 # STEP 1: Test the Theorem of Bolzano
-a: 0.5625	f(a): 0.0072
-b: 0.5781	f(b): -0.0171
+a: 0.5468	f(a): 0.0319
+b: 0.5859	f(b): -0.0292
 BOLZANO: OK
 # STEP 2: Calculate break point
-break_point: 0.5703
+break_point: 0.5663
 
 SUMMARY
 . . . . . .
 ITERATION: 7
-INTERVAL: [0.5625,0.5781]
-ROOT (breakpoint): 0.5703
-ERROR: 0.0243
+INTERVAL: [0.5468,0.5859]
+ROOT (breakpoint): 0.5663
+ERROR: 0.0611
 . . . . . .
 
 Continue the program
 NEW INTERVAL:
-[a=0.5625, b=0.5703]
+[a=0.5663, b=0.5859]
 
 ________________________
 ITERATION: 8
 # STEP 1: Test the Theorem of Bolzano
-a: 0.5625	f(a): 0.0072
-b: 0.5703	f(b): -0.0049
+a: 0.5663	f(a): 0.0013
+b: 0.5859	f(b): -0.0292
 BOLZANO: OK
 # STEP 2: Calculate break point
-break_point: 0.5664
+break_point: 0.5761
 
 SUMMARY
 . . . . . .
 ITERATION: 8
-INTERVAL: [0.5625,0.5703]
-ROOT (breakpoint): 0.5664
-ERROR: 0.0121
+INTERVAL: [0.5663,0.5859]
+ROOT (breakpoint): 0.5761
+ERROR: 0.0305
 . . . . . .
 
 Continue the program
 NEW INTERVAL:
-[a=0.5664, b=0.5703]
+[a=0.5663, b=0.5761]
 
 ________________________
 ITERATION: 9
 # STEP 1: Test the Theorem of Bolzano
-a: 0.5664	f(a): 0.0011
-b: 0.5703	f(b): -0.0049
+a: 0.5663	f(a): 0.0013
+b: 0.5761	f(b): -0.014
 BOLZANO: OK
 # STEP 2: Calculate break point
-break_point: 0.5683
+break_point: 0.5711
 
 SUMMARY
 . . . . . .
 ITERATION: 9
-INTERVAL: [0.5664,0.5703]
-ROOT (breakpoint): 0.5683
-ERROR: 0.006
+INTERVAL: [0.5663,0.5761]
+ROOT (breakpoint): 0.5711
+ERROR: 0.0153
+. . . . . .
+
+Continue the program
+NEW INTERVAL:
+[a=0.5663, b=0.5711]
+
+________________________
+ITERATION: 10
+# STEP 1: Test the Theorem of Bolzano
+a: 0.5663	f(a): 0.0013
+b: 0.5711	f(b): -0.0061
+BOLZANO: OK
+# STEP 2: Calculate break point
+break_point: 0.5687
+
+SUMMARY
+. . . . . .
+ITERATION: 10
+INTERVAL: [0.5663,0.5711]
+ROOT (breakpoint): 0.5687
+ERROR: 0.0074
 . . . . . .
 
 Stop the program
 < ERROR_THRESHOLD=0.01 REACHED == True
 OR
-N_MAX_ITERATIONS=10.0 REACHED == False
+N_MAX_ITERATIONS=100.0 REACHED == False
 
 
 
  >>> RESULT <<<
-ITERATION: 9
-INTERVAL: [0.5664,0.5703]
-ROOT: 0.5683
-ERROR: 0.006
+ITERATION: 10
+INTERVAL: [0.5663,0.5711]
+ROOT: 0.5687
+ERROR: 0.0074
