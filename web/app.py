@@ -16,6 +16,7 @@ HTTP Status
 
 # modules
 import os
+from modules.utils import Utils
 from modules.chapter import Chapter             # Chapter operations
 from typing import List, Dict
 
@@ -29,6 +30,7 @@ SERVER_PATH: str = os.getcwd()      # Server Path
 
 # objects
 method: object = None
+utils = Utils()
 
 # global modules
 
@@ -38,6 +40,7 @@ spec = importlib.util.spec_from_file_location("method", os.path.join(SERVER_PATH
 method_interface_module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(method_interface_module)
 
+# method_interface_module = utils.load_module("method", os.path.join(SERVER_PATH, "modules", "interfaces", "method.py"))
 IMethod = method_interface_module.IMethod
 setattr(__builtins__, 'IMethod', IMethod)
 
@@ -75,28 +78,19 @@ def parametrization():
     global SERVER_PATH
     global method
 
-    def load_module(module_name: str, path: str):
-        # https://www.dev2qa.com/how-to-import-a-python-module-from-a-python-file-full-path/
-
-        spec = importlib.util.spec_from_file_location(\
-            module_name.replace(".py", ""), os.path.join(path, module_name))
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-
-        return module
-
     METHOD = request.form["method"]
     METHOD_PATH = os.path.join(os.sep.join(SERVER_PATH.split(os.sep)[:-1]), "methods", CHAPTER, METHOD)    
 
     # load functions
     # set them builtin
-    method_funcions_modules = load_module(module_name="modules.py", path=METHOD_PATH)
-    for key in method_funcions_modules.__dict__:
+    method_functions_module = utils.load_module(module_name="modules.py", path=METHOD_PATH)    
+    for key in method_functions_module.__dict__:
         if not "__" in key:
-            setattr(__builtins__, key, method_funcions_modules.__dict__[key])
-    
+            print(key, method_functions_module.__dict__[key])
+            setattr(__builtins__, key, method_functions_module.__dict__[key])
+
     # load method module
-    method_module = load_module(module_name="main.py", path=METHOD_PATH)
+    method_module = utils.load_module(module_name="main.py", path=METHOD_PATH)
     # load Method class from method module
     Method = method_module.Method
     # instantiate GLOBAL Method object
@@ -150,15 +144,33 @@ class LogItem(Resource):
 
 class ParamsMethodItem(Resource):
     """
-    RESTful API for get the parameters of the model which will be executed
+    RESTful API for get the parameters of the method which will be executed
     """
 
     def get(self):
         return METHOD_PARAMS, 200
 
+class GraphList(Resource):
+    """
+    RESTful API for get the graphs of the method
+    generated after its execution
+    """
+    global METHOD_PATH    
+    def get(self):
+        print(METHOD_PATH)
+        li_graphs: List = utils.get_images_from_directory(METHOD_PATH)
+
+        print('di: ', li_graphs)
+        di_graphs: Dict = {'graphs': []}
+        for graph in li_graphs:
+            di_graphs['graphs'].append(utils.serialize_image(os.path.join(METHOD_PATH, graph)))
+
+        return di_graphs
+
 api.add_resource(MethodList, '/methods')
 api.add_resource(LogItem, '/log')
 api.add_resource(ParamsMethodItem, '/parameters')
+api.add_resource(GraphList, '/graphs')
 
 # Start server
 if __name__ == '__main__':

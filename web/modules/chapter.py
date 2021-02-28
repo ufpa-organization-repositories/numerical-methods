@@ -21,4 +21,3 @@ class Chapter(ABC):
                 print('ocorrences: ', l_ocorrences)
                 print('methods: ', chapter_methods)
                 return chapter_methods
-    

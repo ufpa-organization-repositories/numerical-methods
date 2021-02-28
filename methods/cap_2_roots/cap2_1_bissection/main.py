@@ -1,28 +1,30 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
-# from modules import *
+from modules import *
 
 from abc import ABC, abstractmethod
 from typing import List, Dict
 
-# global IMethod
-# import IMethod
-
-ERROR_THRESHOLD = 0.01
-N_MAX_ITERATIONS = 10
-
-
 class Method(IMethod):
-
+	
 	def __init__(self):
-		super().__init__(params=['a', 'b'])
+		super().__init__(params=['a', 'b', 'ERROR_THRESHOLD', 'N_MAX_ITERATIONS', 'N_FLOATING_POINTS'])
+		self.a_b_array = np.array([])
+		self.x_array = np.array([])
+		self.y_array = np.array([])
+		self.error_array = np.array([])
+		self.iteration_array = np.array([])
+		self.ROOT: float = None
+		self.ERROR: float = None
 
 	def run(self):
 
 		# Parameters
-		a, b = self.parameters['a'], self.parameters['b']
-		print('a and b: ', a, b)
+		a = self.parameters['a']
+		b = self.parameters['b']
+		ERROR_THRESHOLD = self.parameters['ERROR_THRESHOLD']
+		N_MAX_ITERATIONS = self.parameters['N_MAX_ITERATIONS']
 
 		# Output: Receives the ROOT retrivied for the program
 		ROOT = None
@@ -30,18 +32,13 @@ class Method(IMethod):
 
 		# Iteration
 		i = -1
-		a_b_array = np.array([])
-		x_array = np.array([])
-		y_array = np.array([])
-		error_array = np.array([])
-		iteration_array = np.array([])
 
 		STOP_CONDITION = False
 
 		while not STOP_CONDITION:
 			i = i + 1
 			self.log['log'].append(f'\n________________________\nITERATION: {i}')			
-			iteration_array = np.append(iteration_array, [i])
+			self.iteration_array = np.append(self.iteration_array, [i])
 
 			# STEP 1: Test the Theorem of Bolzano
 			self.log['log'].append('# STEP 1: Test the Theorem of Bolzano')			
@@ -54,6 +51,7 @@ class Method(IMethod):
 				self.log['log'].append('BOLZANO: OK')
 
 				# STEP 2: Calculate break point
+				self.log['log'].append('# STEP 2: Calculate break point')
 				# input("STEP 2: press t continue ...")
 
 				break_point = calc_break_point(a=a, b=b)
@@ -69,9 +67,9 @@ class Method(IMethod):
 				# 	a,b = break_point,b
 				# 	# print(break_point, b)
 
-				x_array = np.append(x_array, [calc_truncate((a + b)/2)])
-				y_array = np.append(y_array, [calc_function(calc_truncate((a + b)/2))])
-				error_array = np.append(error_array, [calc_absolut_error(a=a, b=b)])
+				self.x_array = np.append(self.x_array, [calc_truncate((a + b)/2, 4)])
+				self.y_array = np.append(self.y_array, [calc_function(calc_truncate((a + b)/2, 4))])
+				self.error_array = np.append(self.error_array, [calc_absolut_error(a=a, b=b)])
 
 				# STEP 4: Check the conditions to stop the program
 				# Do not check for the first iteration (i=0)
@@ -93,7 +91,7 @@ class Method(IMethod):
 						self.log['log'].append('OR')
 						self.log['log'].append(f'N_MAX_ITERATIONS={N_MAX_ITERATIONS} REACHED == {i == N_MAX_ITERATIONS}')						
 
-						ROOT = calc_truncate((a + b)/2)
+						ROOT = calc_truncate((a + b)/2, 4)
 						ERROR = error
 						STOP_CONDITION = True		
 						break
@@ -119,9 +117,14 @@ class Method(IMethod):
 		self.log['log'].append(f'ROOT: {ROOT}')
 		self.log['log'].append(f'ERROR: {ERROR}')
 
-		# print(x_array)
-		# print(y_array)
-		# print(error_array)
+		# print(self.x_array)
+		# print(self.y_array)
+		# print(self.error_array)
+
+		self.parameters['a'] = a
+		self.parameters['b'] = b
+		self.ROOT = ROOT
+		self.ERROR = ERROR
 
 	def export_graph(self):
 
@@ -137,8 +140,10 @@ class Method(IMethod):
 		"""
 
 		#################################################################################		
-		"""
-		x = np.linspace(-1,10,1000)
+		
+		distance: float = np.diff([self.parameters['a'], self.parameters['b']])[0]
+		n_points = int(distance * 100)
+		x = np.linspace(self.parameters['a'], self.parameters['b'], n_points)
 		y = [calc_function(elem) for elem in x]
 		# plt.figure(figsize=(12, 10))
 
@@ -146,17 +151,17 @@ class Method(IMethod):
 		# fontP.set_size('xx-small')
 
 		# x: ROOTs - calculted along the iterations
-		plt.scatter(iteration_array, x_array, marker='.', label="Root=" + str(ROOT), color="black")
+		plt.scatter(self.iteration_array, self.x_array, marker='.', label="Root=" + str(self.ROOT), color="black")
 		plt.xlabel("Iterations")
 		plt.title("Roots/f(x)/Error per iteration")
 		plt.legend(bbox_to_anchor=(1, 1), loc='best', fancybox=True, framealpha=0.5)
 
 		# f(x) - calculated along the iterations
-		plt.scatter(iteration_array, y_array, label='f(x)={}'.format(y_array[-1]), color="green")
+		plt.scatter(self.iteration_array, self.y_array, label='f(x)={}'.format(self.y_array[-1]), color="green")
 		plt.legend(bbox_to_anchor=(1, 1), loc='best', fancybox=True, framealpha=0.5)
 
 		# Error - calculated along the iterations
-		plt.scatter(iteration_array, error_array, marker='s', alpha=0.7, label='Error=' + str(ERROR), color="red")
+		plt.scatter(self.iteration_array, self.error_array, marker='s', alpha=0.7, label='Error=' + str(self.ERROR), color="red")
 		plt.legend(bbox_to_anchor=(1, 1), loc='best', fancybox=True, framealpha=0.5)
 
 
@@ -170,20 +175,15 @@ class Method(IMethod):
 		plt.plot(x, y, label="f(x)", color="green")
 		plt.legend(bbox_to_anchor=(1, 1), loc='best')
 
-		plt.scatter(x=ROOT, y=calc_function(ROOT), label="Root=" + str(ROOT), color="black")
+		plt.scatter(x=self.ROOT, y=calc_function(self.ROOT), label="Root=" + str(self.ROOT), color="black")
 		plt.legend(bbox_to_anchor=(1, 1), loc='best', fancybox=True, framealpha=0.5)
 
 
 		# plt.ylabel("Roots")
 		plt.legend(bbox_to_anchor=(1, 1), loc='best', fancybox=True, framealpha=0.5)
 		plt.savefig(fname='function.png', dpi=140)
-		"""
-		#################################################################################	
-	def export_log(self):
-		with open('log.txt', 'w') as f:
-			for line in self.log['log']:
-				f.write(line + '\n')
-		# return self.log['log']	
+		
+		#################################################################################				
 
 	
 # # Entry of values
@@ -197,17 +197,17 @@ class Method(IMethod):
 # # Iteration
 # i = -1
 # a_b_array = np.array([])
-# x_array = np.array([])
-# y_array = np.array([])
-# error_array = np.array([])
-# iteration_array = np.array([])
+# self.x_array = np.array([])
+# self.y_array = np.array([])
+# self.error_array = np.array([])
+# self.iteration_array = np.array([])
 
 # STOP_CONDITION = False
 
 # while not STOP_CONDITION:
 # 	i = i + 1
 # 	print('\n________________________\nITERATION: ', i)
-# 	iteration_array = np.append(iteration_array, [i])
+# 	self.iteration_array = np.append(self.iteration_array, [i])
 
 # 	# STEP 1: Test the Theorem of Bolzano
 # 	# input("STEP 1: press t continue ...")
@@ -234,9 +234,9 @@ class Method(IMethod):
 # 		# 	a,b = break_point,b
 # 		# 	# print(break_point, b)
 
-# 		x_array = np.append(x_array, [calc_truncate((a + b)/2)])
-# 		y_array = np.append(y_array, [calc_function(calc_truncate((a + b)/2))])
-# 		error_array = np.append(error_array, [calc_absolut_error(a=a, b=b)])
+# 		self.x_array = np.append(self.x_array, [calc_truncate((a + b)/2)])
+# 		self.y_array = np.append(self.y_array, [calc_function(calc_truncate((a + b)/2))])
+# 		self.error_array = np.append(self.error_array, [calc_absolut_error(a=a, b=b)])
 
 # 		# STEP 4: Check the conditions to stop the program
 # 		# Do not check for the first iteration (i=0)
@@ -283,9 +283,9 @@ class Method(IMethod):
 # print('ROOT: ', ROOT)
 # print('ERROR: ', ERROR)
 
-# print(x_array)
-# print(y_array)
-# print(error_array)
+# print(self.x_array)
+# print(self.y_array)
+# print(self.error_array)
 
 # # Visualization
 # # plt.figure(figsize=(20, 10))
@@ -306,17 +306,17 @@ class Method(IMethod):
 # # fontP.set_size('xx-small')
 
 # # x: ROOTs - calculted along the iterations
-# plt.scatter(iteration_array, x_array, marker='.', label="Root=" + str(ROOT), color="black")
+# plt.scatter(self.iteration_array, self.x_array, marker='.', label="Root=" + str(ROOT), color="black")
 # plt.xlabel("Iterations")
 # plt.title("Roots/f(x)/Error per iteration")
 # plt.legend(bbox_to_anchor=(1, 1), loc='best', fancybox=True, framealpha=0.5)
 
 # # f(x) - calculated along the iterations
-# plt.scatter(iteration_array, y_array, label='f(x)={}'.format(y_array[-1]), color="green")
+# plt.scatter(self.iteration_array, self.y_array, label='f(x)={}'.format(self.y_array[-1]), color="green")
 # plt.legend(bbox_to_anchor=(1, 1), loc='best', fancybox=True, framealpha=0.5)
 
 # # Error - calculated along the iterations
-# plt.scatter(iteration_array, error_array, marker='s', alpha=0.7, label='Error=' + str(ERROR), color="red")
+# plt.scatter(self.iteration_array, self.error_array, marker='s', alpha=0.7, label='Error=' + str(ERROR), color="red")
 # plt.legend(bbox_to_anchor=(1, 1), loc='best', fancybox=True, framealpha=0.5)
 
 

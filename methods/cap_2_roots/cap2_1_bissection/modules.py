@@ -2,7 +2,7 @@ import numpy as np
 
 N_FLOATING_POINTS = 4
 
-def calc_truncate(number: float) -> float:
+def calc_truncate(number: float, N_FLOATING_POINTS: int = 4) -> float:
 	"""
 	Truncate the number to the specified floating points
 	"""

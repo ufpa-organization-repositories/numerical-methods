@@ -2,10 +2,13 @@ class Method {
 
     constructor () {
         this.logTableEl = document.querySelector(".table");
+        this.graphEl = document.querySelector(".graphs");
         this.initialize();
     }
 
     initialize(){
+        // this.getGraphs();
+        this.getGraphs2();
         this.getLog();
     }
 
@@ -24,7 +27,36 @@ class Method {
             });
         });    
     }
-        
+
+    // works, too. I am using fetch to learn new way of doing async request
+    getGraphs(){
+        this.httpGetAsync('http://127.0.0.1:5000/graphs', (response) => {
+            let obj = JSON.parse(response);
+            console.log(obj);
+            obj.graphs.forEach( (graph, index) => {
+                console.log(index, graph);
+            })
+        })
+    }
+
+    getGraphs2(){
+        const url = 'graphs'
+            fetch(url)
+                .then(resp => resp.json())
+                .then(obj => {
+                    // const itens = estados.reduce(
+                    //     (html, estado) => html + `<li>${estado.nome}</li>`, ''
+                    // )
+                    // document.body.insertAdjacentHTML('beforeend', `<ul>${itens}</ul>`)                    
+                    console.log(obj);                    
+                    obj.graphs.forEach(graph => {
+                        let graphEl = this.renderGraph(graph);
+                        this.graphEl.appendChild(graphEl);
+                    });
+                })
+
+    }
+
     httpGetAsync(theUrl, callback) {   
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function() {
@@ -34,6 +66,12 @@ class Method {
             
         xmlHttp.open("GET", theUrl, true); // true for asynchronous
         xmlHttp.send(null); // https://developer.mozilla.org/pt-BR/docs/Web/API/XMLHttpRequest/send 
-    }    
+    }
+
+    renderGraph = (graph) => {
+        let graphEl = document.createElement("div");
+        graphEl.innerHTML = `<img src="data:image/gif;base64,${graph}">`;
+        return graphEl;
+    }        
 
 }
