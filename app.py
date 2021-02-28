@@ -180,6 +180,6 @@ def create_app():
 
 # Start server
 
-if __name__ == '__main__':
-    app = create_app()
-    app.run('127.0.0.1', '5000', debug=True)  # important to mention debug=True
+# if __name__ == '__main__':
+#     app = create_app()
+#     app.run('127.0.0.1', '5000', debug=True)  # important to mention debug=True
