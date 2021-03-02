@@ -44,25 +44,25 @@ class Method(IMethod):
 
 		while not STOP_CONDITION:
 			i = i + 1
-			self.log['log'].append(f'\n________________________\nITERATION: {i}')			
+			self.log.append(f'\n________________________\nITERATION: {i}')			
 			self.iteration_array = np.append(self.iteration_array, [i])
 
 			# STEP 1: Test the Theorem of Bolzano
-			self.log['log'].append('# STEP 1: Test the Theorem of Bolzano')			
+			self.log.append('# STEP 1: Test the Theorem of Bolzano')			
 			# input("STEP 1: press t continue ...")
 			BOLZANO = self.calc_Bolzano_Theorem(a=a, b=b)
 
 			if BOLZANO:
-				self.log['log'].append(f'a: {a}\tf(a): {self.calc_function(a)}')
-				self.log['log'].append(f'b: {b}\tf(b): {self.calc_function(b)}')
-				self.log['log'].append('BOLZANO: OK')
+				self.log.append(f'a: {a}\tf(a): {self.calc_function(a)}')
+				self.log.append(f'b: {b}\tf(b): {self.calc_function(b)}')
+				self.log.append('BOLZANO: OK')
 
 				# STEP 2: Calculate break point
-				self.log['log'].append('# STEP 2: Calculate break point')
+				self.log.append('# STEP 2: Calculate break point')
 				# input("STEP 2: press t continue ...")
 
 				break_point = self.calc_break_point(a=a, b=b)
-				self.log['log'].append(f'break_point: {break_point}')
+				self.log.append(f'break_point: {break_point}')
 				
 				# STEP 3: Reduce previous [a,b] interval
 				# Choose between [a, x] or [x, b] by testing Theorem of Bolzano
@@ -83,27 +83,27 @@ class Method(IMethod):
 
 				if i > 0:
 					error =  self.calc_absolut_error(a=a, b=b)
-					self.log['log'].append('\nSUMMARY')
-					self.log['log'].append('. . . . . .')
-					self.log['log'].append(f'ITERATION: {i}')
-					self.log['log'].append(f'INTERVAL: [{a},{b}]')
-					self.log['log'].append(f'ROOT (breakpoint): {break_point}')
-					self.log['log'].append(f'ERROR: {error}')
-					self.log['log'].append('. . . . . .')			
+					self.log.append('\nSUMMARY')
+					self.log.append('. . . . . .')
+					self.log.append(f'ITERATION: {i}')
+					self.log.append(f'INTERVAL: [{a},{b}]')
+					self.log.append(f'ROOT (breakpoint): {break_point}')
+					self.log.append(f'ERROR: {error}')
+					self.log.append('. . . . . .')			
 
 					if (error < ERROR_THRESHOLD) or (i == N_MAX_ITERATIONS):
 						
-						self.log['log'].append('\nStop the program')
-						self.log['log'].append(f'< ERROR_THRESHOLD={ERROR_THRESHOLD} REACHED == {error < ERROR_THRESHOLD}')
-						self.log['log'].append('OR')
-						self.log['log'].append(f'N_MAX_ITERATIONS={N_MAX_ITERATIONS} REACHED == {i == N_MAX_ITERATIONS}')						
+						self.log.append('\nStop the program')
+						self.log.append(f'< ERROR_THRESHOLD={ERROR_THRESHOLD} REACHED == {error < ERROR_THRESHOLD}')
+						self.log.append('OR')
+						self.log.append(f'N_MAX_ITERATIONS={N_MAX_ITERATIONS} REACHED == {i == N_MAX_ITERATIONS}')						
 
 						ROOT = self.calc_truncate((a + b)/2, self.N_FLOATING_POINTS)
 						ERROR = error
 						STOP_CONDITION = True		
 						break
 					else:
-						self.log['log'].append('\nContinue the program')
+						self.log.append('\nContinue the program')
 
 				if self.calc_Bolzano_Theorem(a, break_point):
 					a,b = a,break_point
@@ -111,18 +111,18 @@ class Method(IMethod):
 				else:
 					a,b = break_point,b
 					# print(break_point, b)
-				self.log['log'].append(f'NEW INTERVAL:\n[a={a}, b={b}]')
+				self.log.append(f'NEW INTERVAL:\n[a={a}, b={b}]')
 
 			else:
-				self.log['log'].append(f'There is no ROOT in [a,b]=[{a},{b}]')
-				self.log['log'].append('>>> CHOOSE ANOTHER [a,b] INTERVAL <<<')
+				self.log.append(f'There is no ROOT in [a,b]=[{a},{b}]')
+				self.log.append('>>> CHOOSE ANOTHER [a,b] INTERVAL <<<')
 				break
 
-		self.log['log'].append('\n\n\n >>> RESULT <<<')
-		self.log['log'].append(f'ITERATION: {i}')
-		self.log['log'].append('INTERVAL: [{},{}]'.format(a, b))
-		self.log['log'].append(f'ROOT: {ROOT}')
-		self.log['log'].append(f'ERROR: {ERROR}')
+		self.log.append('\n\n\n >>> RESULT <<<')
+		self.log.append(f'ITERATION: {i}')
+		self.log.append('INTERVAL: [{},{}]'.format(a, b))
+		self.log.append(f'ROOT: {ROOT}')
+		self.log.append(f'ERROR: {ERROR}')
 
 		# print(self.x_array)
 		# print(self.y_array)
@@ -133,7 +133,7 @@ class Method(IMethod):
 		self.ROOT = ROOT
 		self.ERROR = ERROR
 
-	def export_graph(self):
+	def hook_export_graph(self):
 
 		# Visualization
 		# plt.figure(figsize=(20, 10))
@@ -200,8 +200,7 @@ class Method(IMethod):
 		string = str(number)
 		if '.' in string:
 			for index, elem in enumerate(string):
-				if elem == '.':
-					print('N_FLOATING_POINTS: ', N_FLOATING_POINTS, type(N_FLOATING_POINTS))
+				if elem == '.':					
 					return float(string[:index + 1 + N_FLOATING_POINTS])
 		else:
 			return float(number)

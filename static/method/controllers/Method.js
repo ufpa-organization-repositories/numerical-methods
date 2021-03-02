@@ -48,7 +48,14 @@ class Method {
                     //     (html, estado) => html + `<li>${estado.nome}</li>`, ''
                     // )
                     // document.body.insertAdjacentHTML('beforeend', `<ul>${itens}</ul>`)                    
-                    console.log(obj);                    
+                    console.log(obj);
+
+                    // display graphEl if there's graphs
+                    console.log('length: ', obj.graphs.length);
+                    if (obj.graphs.length > 0 ) {
+                        this.graphEl.style.display = "block";
+                    }
+
                     obj.graphs.forEach(graph => {
                         let graphEl = this.renderGraph(graph);
                         this.graphEl.appendChild(graphEl);
