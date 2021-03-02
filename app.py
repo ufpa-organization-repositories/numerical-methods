@@ -4,6 +4,7 @@ from flask_restful import Resource, Api
 
 # modules
 import os
+import sys
 from modules.utils import Utils
 from modules.chapter import Chapter             # Chapter operations
 from typing import List, Dict
@@ -18,9 +19,8 @@ METHOD_PARAMS: Dict = None          # Method parameters
 SERVER_PATH: str = os.getcwd()      # Server Path
 
 # objects
-method: object = None
+method_obj: object = None
 utils = Utils()
-
 
 """Create flask application"""
 
@@ -36,16 +36,9 @@ HTTP Status
 404 - Error
 """
 
-# global modules
-
-# https://stackoverflow.com/questions/301134/how-to-import-a-module-given-its-name-as-string
-spec = importlib.util.spec_from_file_location("method", os.path.join(SERVER_PATH, "modules", "interfaces", "method.py"))
-method_interface_module = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(method_interface_module)
-
-# method_interface_module = utils.load_module("method", os.path.join(SERVER_PATH, "modules", "interfaces", "method.py"))
-IMethod = method_interface_module.IMethod
-setattr(__builtins__, 'IMethod', IMethod)
+# path to global modules
+# leave IMethod class acessible by Method class wherever it is
+sys.path.append(os.path.join(SERVER_PATH, "modules/interfaces/"))
 
 # Routes
 @app.route('/', methods=['GET', 'POST'])
@@ -79,39 +72,33 @@ def parametrization():
     global METHOD_PATH
     global METHOD_PARAMS
     global SERVER_PATH
-    global method
+    global method_obj
 
     METHOD = request.form["method"]
     METHOD_PATH = os.path.join(SERVER_PATH, "methods", CHAPTER, METHOD)    
 
-    # load functions
-    # set them builtin
-    method_functions_module = utils.load_module(module_name="modules.py", path=METHOD_PATH)
-    for key in method_functions_module.__dict__:
-        if not "__" in key:
-            print(key, method_functions_module.__dict__[key])
-            setattr(__builtins__, key, method_functions_module.__dict__[key])
+    sys.path.append(METHOD_PATH)
 
-    # load method module
-    method_module = utils.load_module(module_name="main.py", path=METHOD_PATH)
-    # load Method class from method module
-    Method = method_module.Method
-    # instantiate GLOBAL Method object
-    method = Method()
-    # get default method parameters
-    METHOD_PARAMS = method.parameters    
+    from method import Method # The Class to instantiate the method_obj
+
+    method_obj = Method()
+    METHOD_PARAMS = method_obj.parameters
     
     return render_template('parametrization.html')
 
 @app.route('/method', methods=["GET", "POST"])
 def method():
-    global METHOD_PARAMS
-    global method    
+    global METHOD_PATH
+    global SERVER_PATH
+    global method_obj
 
     # change to MMETHOD_PATH to export log in method folder
     os.chdir(METHOD_PATH)
-    method.execute(request.form)    
+    method_obj.execute(request.form)
     os.chdir(SERVER_PATH)
+
+    # remove the method path to the PATH SYSTEMS ENV
+    sys.path.pop()
 
     return render_template('method.html')
 
@@ -159,11 +146,8 @@ class GraphList(Resource):
     generated after its execution
     """
     global METHOD_PATH    
-    def get(self):
-        print(METHOD_PATH)
-        li_graphs: List = utils.get_images_from_directory(METHOD_PATH)
-
-        print('di: ', li_graphs)
+    def get(self):        
+        li_graphs: List = utils.get_images_from_directory(METHOD_PATH)        
         di_graphs: Dict = {'graphs': []}
         for graph in li_graphs:
             di_graphs['graphs'].append(utils.serialize_image(os.path.join(METHOD_PATH, graph)))
@@ -178,6 +162,5 @@ api.add_resource(GraphList, '/graphs')
 
 # Start server
 
-# if __name__ == '__main__':
-#     app = create_app()
-#     app.run('127.0.0.1', '5000', debug=True)  # important to mention debug=True
+if __name__ == '__main__':    
+    app.run('127.0.0.1', '5000', debug=True)  # important to mention debug=True

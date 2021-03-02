@@ -1,4 +1,5 @@
 import os
+import sys
 import importlib
 from typing import List, Optional
 import base64
@@ -58,4 +59,8 @@ class Utils:
                 li_images.append(file)
         
         os.chdir(server_path)
-        return li_images    
+        return li_images
+
+    @staticmethod
+    def import_module(path: str) -> None:
+        sys.path.append(path)
