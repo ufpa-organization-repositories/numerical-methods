@@ -1,4 +1,6 @@
 *__py
+__*
+*__
 *.pyc
 venv*
 *sublime*
