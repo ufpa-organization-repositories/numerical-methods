@@ -47,8 +47,9 @@ class Parametrization {
     renderTextInput = (param) => {        
         let paramEl = document.createElement("div");
         paramEl.innerHTML = `
-            <label for="${param}">${param}:</label><br>
-            <input type="text" id="${param}" name="${param}" placeholed="Enter a value"><br><br>
+            <label for="${param}">${param}:</label>
+            <input type="text" id="${param}" name="${param}" placeholed="Enter a value" stype=padding-left:4em>
+            <br><br>
         `;
         
         return paramEl;

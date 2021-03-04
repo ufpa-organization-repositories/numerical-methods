@@ -103,6 +103,13 @@ def method():
     return render_template('method.html')
 
 # Apis
+class ChapterList(Resource):
+    global Chapter
+
+    def get(self):
+        chapters: List[str] = Chapter.get_chapters()
+        return {'chapters': chapters}
+
 class MethodList(Resource):    
     """
     RESTful API for consulting/list the methods for the chapter that can be executed
@@ -154,6 +161,7 @@ class GraphList(Resource):
 
         return di_graphs
 
+api.add_resource(ChapterList, '/chapters')
 api.add_resource(MethodList, '/methods')
 api.add_resource(LogItem, '/log')
 api.add_resource(ParamsMethodItem, '/parameters')

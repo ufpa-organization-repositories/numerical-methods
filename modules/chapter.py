@@ -5,7 +5,15 @@ import re
 
 
 class Chapter(ABC):
-    """Chapter operations"""        
+    """Chapter operations"""
+
+    @staticmethod
+    def get_chapters() -> List[str]:
+
+        chapters_path: str = os.path.join(os.getcwd(), "methods")
+        chapters: List[str] = os.listdir(chapters_path)
+        return chapters
+
     
     @staticmethod
     def get_chapter_methods(chapter_name) -> List[str]:

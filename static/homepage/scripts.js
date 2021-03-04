@@ -1,0 +1,1 @@
+window.homepage = new Homepage();

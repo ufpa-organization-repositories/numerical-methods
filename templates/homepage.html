@@ -3,19 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="static/homepage/style.css">
+	<link rel="stylesheet" href="static/common/components/Body.css">
+	<link rel="stylesheet" href="static/common/components/Button.css">
 	<title>Numerical Methods</title>
 </head>
+
 <body>
 	<h1>Numerical Methods</h1>
 	<hr>
 	<h2>Choose a chapter</h2>
-	<form action="/chapter" method="POST" class="btn-group">
-		<button type="submit" value="cap_1_introduction" name="chapter">Chapter 01: introdution</button>
-		<button type="submit" value="cap_2_roots" name="chapter">Chapter 02: roots</button>
-		<button type="submit" value="cap_3_linear-systems" name="chapter">Chapter 03: linear systems</button>
-		<button type="submit" value="cap_4_interpolation" name="chapter">Chapter 04: interpolation</button>
-		<button type="submit" value="cap_5_integration" name="chapter">Chapter 05: integration</button>
-	</form>	
+	<form action="/chapter" method="POST" id="chapters" class="btn-group"></form>
+
+	<script type="text/javascript" src="static/homepage/controllers/Homepage.js"></script>   
+	<script type="text/javascript" src="static/homepage/scripts.js"></script>	
 </body>
 </html>
